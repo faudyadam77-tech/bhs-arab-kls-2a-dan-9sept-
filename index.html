@@ -43,9 +43,23 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.2s;
         }
         .vocab-card:hover { transform: translateY(-5px); }
-        .vocab-card .arabic { font-size: 2em; color: #ff6b6b; margin-bottom: 10px; }
-        .vocab-card .latin { font-size: 1.1em; color: #666; font-style: italic; }
-        .vocab-card .indonesian { font-size: 1.2em; color: #4ecdc4; font-weight: bold; margin-top: 10px; }
+        
+        /* Gaya untuk Gambar Kosakata */
+        .vocab-img {
+            width: 100%;
+            height: 130px;
+            object-fit: contain;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            padding: 10px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        .vocab-card .arabic { font-size: 2em; color: #ff6b6b; margin-bottom: 5px; }
+        .vocab-card .latin { font-size: 1.1em; color: #666; font-style: italic; margin-bottom: 5px; }
+        .vocab-card .indonesian { font-size: 1.2em; color: #4ecdc4; font-weight: bold; }
+        
         .quiz-section { margin-top: 30px; }
         .question {
             background: #fff5f5; padding: 20px; border-radius: 15px;
@@ -53,7 +67,7 @@
         }
         .question-text { font-size: 1.3em; color: #333; margin-bottom: 15px; font-weight: bold; }
         
-        /* PERBAIKAN: Opsi bisa diklik seluruh area */
+        /* Opsi Jawaban */
         .options { display: flex; flex-direction: column; gap: 10px; }
         .option {
             background: white; border-radius: 10px; cursor: pointer;
@@ -111,22 +125,47 @@
                     <option value="2B">Kelas 2B</option>
                 </select>
             </div>
-            <button class="btn" onclick="startLearning()"> Mulai Belajar!</button>
+            <button class="btn" onclick="startLearning()">🚀 Mulai Belajar!</button>
         </div>
 
         <!-- Materi & Quiz -->
         <div id="learningSection" class="hidden">
             
-            <!-- Bagian Materi (Akan disembunyikan saat mulai soal) -->
+            <!-- Bagian Materi -->
             <div id="materiSection">
-                <div class="section-title">📖 Kosakata Baru</div>
+                <div class="section-title"> Kosakata Baru</div>
                 <div class="materi-box">
                     <div class="vocab-grid">
-                        <div class="vocab-card"><div class="arabic">طَبَاشِيرٌ</div><div class="latin">Thabāshīrun</div><div class="indonesian">Kapur Tulis</div></div>
-                        <div class="vocab-card"><div class="arabic">مِقْلَمَةٌ</div><div class="latin">Miqlamatun</div><div class="indonesian">Kotak Pensil</div></div>
-                        <div class="vocab-card"><div class="arabic">حَقِيبَةٌ</div><div class="latin">Ḥaqībatun</div><div class="indonesian">Tas Sekolah</div></div>
-                        <div class="vocab-card"><div class="arabic">مِزْيَلٌ</div><div class="latin">Mizyalun</div><div class="indonesian">Tip-X</div></div>
-                        <div class="vocab-card"><div class="arabic">فِرْجَارٌ</div><div class="latin">Firjārun</div><div class="indonesian">Jangka</div></div>
+                        <div class="vocab-card">
+                            <img src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/kapur.jpeg" alt="Kapur" class="vocab-img">
+                            <div class="arabic">طَبَاشِيرٌ</div>
+                            <div class="latin">Thabāshīrun</div>
+                            <div class="indonesian">Kapur Tulis</div>
+                        </div>
+                        <div class="vocab-card">
+                            <img src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/kotak-pensil.jpeg" alt="Kotak Pensil" class="vocab-img">
+                            <div class="arabic">مِقْلَمَةٌ</div>
+                            <div class="latin">Miqlamatun</div>
+                            <div class="indonesian">Kotak Pensil</div>
+                        </div>
+                        <div class="vocab-card">
+                            <img src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/tas-sekolah.jpeg" alt="Tas Sekolah" class="vocab-img">
+                            <div class="arabic">حَقِيبَةٌ</div>
+                            <div class="latin">aqībatun</div>
+                            <div class="indonesian">Tas Sekolah</div>
+                        </div>
+                        <div class="vocab-card">
+                            <img src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/tipx.jpeg" alt="Tip-X" class="vocab-img">
+                            <div class="arabic">مِزْيَلٌ</div>
+                            <div class="latin">Mizyalun</div>
+                            <div class="indonesian">Tip-X</div>
+                        </div>
+                        <div class="vocab-card">
+                            <img src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/jangka.jpeg" alt="Jangka" class="vocab-img">
+                            <div class="arabic">فِرْجَارٌ</div>
+                            <div class="latin">Firjārun</div>
+                            <div class="indonesian">Jangka</div>
+                        </div>
                     </div>
                 </div>
                 <div style="text-align: center; margin: 30px 0;">
@@ -134,7 +173,7 @@
                 </div>
             </div>
 
-            <!-- Bagian Soal (Awalnya tersembunyi) -->
+            <!-- Bagian Soal -->
             <div id="quizContainer" class="hidden">
                 <div class="section-title">📝 Soal Pilihan Ganda</div>
                 <div class="quiz-section" id="quizSection"></div>
@@ -144,7 +183,7 @@
 
         <!-- Hasil Nilai -->
         <div id="resultSection" class="result-box">
-            <h2>🎉 Hasil Nilai 🎉</h2>
+            <h2>🎉 Hasil Nilai </h2>
             <div class="emoji" id="resultEmoji"></div>
             <div class="score" id="scoreDisplay"></div>
             <p style="color: white; font-size: 1.5em; margin-top: 20px;" id="resultMessage"></p>
@@ -189,18 +228,12 @@
             });
         }
 
-        // Fungsi untuk menangani klik pada seluruh area opsi
         function selectOption(element, groupName, value) {
-            // Hapus kelas 'selected' dari semua opsi di grup yang sama
             const allOptions = document.querySelectorAll(`input[name="${groupName}"]`);
             allOptions.forEach(radio => {
                 radio.closest('.option').classList.remove('selected');
             });
-            
-            // Tambahkan kelas 'selected' ke elemen yang diklik
             element.classList.add('selected');
-            
-            // Centang radio button di dalamnya
             const radio = element.querySelector('input[type="radio"]');
             radio.checked = true;
         }
@@ -208,7 +241,7 @@
         function startLearning() {
             const name = document.getElementById('studentName').value.trim();
             const className = document.getElementById('studentClass').value;
-            if (!name || !className) { alert('️ Mohon isi nama dan kelas terlebih dahulu!'); return; }
+            if (!name || !className) { alert('⚠️ Mohon isi nama dan kelas terlebih dahulu!'); return; }
             
             studentData.name = name;
             studentData.class = className;
@@ -240,7 +273,7 @@
             });
 
             if (answered < questions.length) {
-                if (!confirm(`⚠️ Kamu baru menjawab ${answered} dari ${questions.length} soal. Yakin ingin mengumpulkan?`)) return;
+                if (!confirm(`️ Kamu baru menjawab ${answered} dari ${questions.length} soal. Yakin ingin mengumpulkan?`)) return;
             }
 
             const score = (correct / questions.length) * 100;
@@ -252,7 +285,7 @@
             if (score >= 90) { emoji = '🌟🌟'; message = 'Luar Biasa! Sempurna!'; }
             else if (score >= 70) { emoji = '👏😊'; message = 'Bagus Sekali!'; }
             else if (score >= 60) { emoji = '🙂👍'; message = 'Cukup Baik!'; }
-            else { emoji = '💪📚💪'; message = 'Terus Belajar Ya!'; }
+            else { emoji = '💪📚'; message = 'Terus Belajar Ya!'; }
 
             document.getElementById('resultEmoji').textContent = emoji;
             document.getElementById('resultMessage').textContent = message;
@@ -262,7 +295,6 @@
             window.scrollTo(0, 0);
         }
 
-        // PERBAIKAN: Format Timestamp menjadi DD-MM-YYYY H:MM:SS
         function getFormattedTimestamp() {
             const now = new Date();
             const pad = (n) => n.toString().padStart(2, '0');
@@ -271,10 +303,10 @@
 
         function sendToSpreadsheet(correct, score) {
             // GANTI URL INI DENGAN URL WEB APP DARI GOOGLE APPS SCRIPT
-            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx5SakcYm1rYtjKhFbGjtlSkcdn_OO6yxX2QTgLOonxhafVPqJDv2CC2r5KKZNzTYi9/exec';
+            const SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
 
             const data = {
-                timestamp: getFormattedTimestamp(), // Menggunakan format baru
+                timestamp: getFormattedTimestamp(),
                 name: studentData.name,
                 class: studentData.class,
                 correct: correct,
